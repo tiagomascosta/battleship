@@ -1,49 +1,47 @@
 # Battleship
 
-Projeto em C desenvolvido para a unidade curricular de Programacao, inspirado no jogo Battleship.
+This repository contains a C project inspired by the Battleship game, developed for a programming course.
 
-Este repositorio inclui duas variantes do programa:
+There are two versions of the program:
 
-- `wargame.c`: versao orientada a linha de comandos, com opcoes passadas por argumentos.
-- `projeto.c`: versao interativa, criada como submissao adicional, em que o programa apresenta menus e pede as opcoes ao utilizador.
+- `wargame.c`: a command-line version configured through terminal arguments.
+- `projeto.c`: an interactive version that asks the user for the game options through menus.
 
-## Objetivo
+## Purpose
 
-O programa gera e/ou resolve tabuleiros de jogo com base em diferentes modos de jogo, posicionamento e disparo.
+The program generates and/or solves game boards using different game, positioning, and firing modes.
 
-## Estrutura
+## Project Structure
 
-- `wargame.c`: implementacao principal baseada em argumentos de consola.
-- `projeto.c`: versao com interface textual interativa.
-- `Guia de implementação.pdf`: descricao tecnica da logica interna e das principais decisoes de implementacao.
-- `readme.txt`: nota curta que acompanha a submissao original.
+- `wargame.c`: main implementation based on command-line arguments.
+- `projeto.c`: interactive text-based version.
+- `Guia de implementação.pdf`: technical implementation guide describing the internal logic and design decisions.
+- `readme.txt`: short note included with the original submission.
 
-## Compilacao
+## Compile and Get Started
 
-Pode compilar qualquer uma das variantes com `gcc`:
+Compile the two program variants with `gcc`:
 
 ```bash
 gcc -o wargame wargame.c
 gcc -o projeto projeto.c -lm
 ```
 
-## Como executar
+After compiling, you can start using the project in one of two ways.
 
-### Variante por argumentos
+Run the command-line version:
 
 ```bash
 ./wargame -h
 ```
 
-Opcoes principais:
+Run the interactive version:
 
-- `-t`: dimensao do tabuleiro no formato `linhasxcolunas`
-- `-j`: modo de jogo (`0`, `1` ou `2`)
-- `-p`: modo de posicionamento (`1` ou `2`)
-- `-d`: modo de disparo (`1` a `3`, usado no modo de jogo `2`)
-- `-1` a `-8`: quantidade de pecas de cada tipo
+```bash
+./projeto
+```
 
-Exemplos:
+If you want a quick first test, these commands are good starting points:
 
 ```bash
 ./wargame -t 9x9 -j 0 -p 1
@@ -51,33 +49,35 @@ Exemplos:
 ./wargame -t 9x9 -j 2 -d 3 -1 1 -2 1 -3 1
 ```
 
-### Variante interativa
+## Command-Line Usage
 
-```bash
-./projeto
-```
+Main options for `wargame`:
 
-Nesta versao, o programa apresenta menus e pede ao utilizador a dimensao do tabuleiro e os modos pretendidos, sem obrigar ao uso de argumentos na linha de comandos.
+- `-t`: board dimensions in the format `rowsxcolumns`
+- `-j`: game mode (`0`, `1`, or `2`)
+- `-p`: positioning mode (`1` or `2`)
+- `-d`: firing mode (`1` to `3`, used in game mode `2`)
+- `-1` to `-8`: number of pieces of each type
 
-## Modos de jogo
+## Game Modes
 
-- `Modo 0`: gera e mostra o tabuleiro com as pecas posicionadas.
-- `Modo 1`: permite ao jogador introduzir coordenadas e tentar descobrir todas as pecas.
-- `Modo 2`: o computador executa disparos automaticamente segundo o modo de disparo escolhido.
+- `Mode 0`: generates and displays the board with the pieces already positioned.
+- `Mode 1`: lets the player enter coordinates and try to discover all pieces.
+- `Mode 2`: makes the computer fire automatically according to the selected firing mode.
 
-## Modos de posicionamento e disparo
+## Positioning and Firing Modes
 
-- `Posicionamento 1`: colocacao automatica das pecas segundo a logica definida no projeto.
-- `Posicionamento 2`: colocacao automatica com escolha das quantidades de pecas por tipo.
-- `Disparo 1`: selecao aleatoria de coordenadas sem repeticao.
-- `Disparo 2` e `3`: percorrem submatrizes `3x3` segundo uma sequencia predefinida; o modo `3` marca zonas adjacentes a pecas descobertas para evitar tiros redundantes.
+- `Positioning 1`: automatic placement of pieces according to the project rules.
+- `Positioning 2`: automatic placement with user-defined quantities for each piece type.
+- `Firing 1`: random coordinate selection without repetition.
+- `Firing 2` and `3`: traverse `3x3` submatrices using a predefined sequence; mode `3` additionally marks cells around discovered pieces to avoid redundant shots.
 
-## Resumo tecnico
+## Technical Summary
 
-O programa trabalha sobre matrizes em memoria, sendo a principal indexada como `yx[y][x]`. A implementacao organiza o tabuleiro em blocos `3x3`, ideia que estrutura tanto o posicionamento de pecas como os modos de disparo automatico. O `Guia de implementação.pdf` detalha esta logica interna, incluindo o uso de matrizes auxiliares e flags para controlo de tentativas, repeticoes e validacao de jogadas.
+The program is built around in-memory matrices, with the main board indexed as `yx[y][x]`. The implementation organizes the board into `3x3` blocks, and this structure drives both piece placement and automatic firing behavior. The `Guia de implementação.pdf` file contains the detailed technical explanation, including auxiliary matrices, flags, and validation logic used throughout the program.
 
-## Notas
+## Notes
 
-- As dimensoes validas do tabuleiro respeitam multiplos de `3`, com limites definidos no codigo.
-- Existe uma nota na submissao original sobre uma restricao no uso do modo de disparo com os modos de jogo `0` e `1`, por potencial conflito com o script fornecido no contexto da disciplina.
-- `projeto.c` inclui pequenos melhoramentos de apresentacao relativamente a `wargame.c`, mantendo a mesma base funcional.
+- Valid board dimensions must be multiples of `3`, within the limits defined in the code.
+- The original submission includes a note about a restriction involving firing mode together with game modes `0` and `1`, due to a possible conflict with the provided course script.
+- `projeto.c` includes presentation and usability improvements over `wargame.c` while keeping the same core functionality.
